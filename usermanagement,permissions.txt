@@ -1,0 +1,73 @@
+-------------------------------------user management-------------------------
+
+who ====to check who am loin info and current session
+whoami=================
+who am i =================
+w ----------------- detailed command to check who login and what they are doing
+------------------------------------------------------------------------------------------
+
+id (username)-----------print user id,groupid
+id root
+
+useradd zia-------------->adding user zia
+su - zia  --------------->  we can switch and use its envirment
+su zia ------------------>  we switch to user
+pwd---------------------->print current working directory
+
+
+
+useradd zia-----------------adding user
+userdel -r zia------------------del user and directory
+passwd zia ------------------ set pass
+sudo whoami--------------------to check user level
+
+visudo or vi /etc/sudoer-----------------------to add user to sudoer file
+
+sudo usermode -aG wheel mustafa-------------- add user to wheel group .wheel group is a group from which we can run a sudo commands.
+
+visudo ----> mustafa ALL=(ALL)  /usr/sbin/passwd---------------------------mustafa user can run only specified command whos path is mentioned here otherwise no 
+username ALL=(ALL) NOPASSWD: /path/to/command1, /path/to/command2------------------user can perfome only specific command as a root
+/etc/default/useradd-------------------------------------file for new creating user.................
+
+useradd -c  "zia mustafa" zia---------------adding user zia with display name
+
+groupadd atlanta---------------------to add group
+
+sudo gpasswd -d john developers--------------remove user from group
+
+groupdel atlanta-------------------------to delete a group
+
+cat /etc/group--------------------to view list of groups
+
+
+-----------------------------------------Permissions------------------------------------------------------------------
+
+
+touch file.txt
+
+ls -l
+
+umask--------------------default permission assigned with usmask if 0022 first zero is for special permission others are rwx
+if we change umask file for file and for firectory by default when we create a file or dir those permissions are auto applied
+
+
+chown zia file.txt--------------change ownership of file
+
+chgrp tennis file.txt------------changing group of file
+
+
+chown zia:tenis file.txt---------------one liner command to change permissions of user and group
+
+chmod u-rw file.txt------------------------modifying user permissions
+chmod g-rwx file.txt-----------------------modifying group permissions
+chmod o-rw file.txt------------------------modifying others permissions
+
+r=4
+w=3
+x=1
+
+
+
+
+
+
