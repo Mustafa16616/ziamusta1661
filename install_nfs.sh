@@ -1,5 +1,5 @@
 << Comment
-this script is to install nfs in linux
+This script is to install nfs in linux
 we can also install other packages by only
 changing the name of package
 Comment
