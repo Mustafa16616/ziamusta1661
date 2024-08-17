@@ -1,0 +1,56 @@
+---------------------------PERMISSION FILES AND DIRECTORIES----------------------------
+
+By default permissions are assigned to files and directories which we create is with the help of umask
+-------------->umask
+it would show a value 0022
+r=4,w=2,x=1
+"A text file has max permission 666 means RW because read=4 and write=2.The sum of both
+numbers are 6 and for UGO(User,Group,Other) it is default 666.if we subtract umask value 0022
+from 666 we get 644 which is rw- r-- r--.BY default we dont have execute permission we have to set it manuallay "ignore zero which is on start.
+
+to change value of umask--------------->umask 0044
+subtract 666 with umask we get 666-044-------  -rw -w- -w-
+
+
+------------------Regular file permission--------------
+
+
+
+chmod 666 file.txt
+chmod u+x file.txt
+chmod g+x file.txt
+chmod o+x file.txt
+
+To set file permission for specific user we use acl
+	install acl package--yum install acl
+setfacl m u:mustafa:rwx file.sh
+setfacl m g:mustafa:rwx file.sh
+
+to check permission---------->getfacl file.sh
+
+---------------------Advance file permissions-----------------
+
+stickybit "IT is a permission which is set to the directory to prevent user for deleting other
+		users file"
+mkdir stiky
+chmod 777 stiky
+chmod +t stiky _-------------------> +t represent we are applying stikybit
+
+---
+
+
+
+-------------------------------setgroupid------------------------------------------
+setgid
+
+"Setting group id is that the group owner owns the files in the particular directory"
+
+groupadd Drockx
+
+mkdir new
+
+chgrp Drockx /new------------------------------->change group of directory
+
+chmod 2777 new-----------------------------------2 is for setting up group id 
+
+
