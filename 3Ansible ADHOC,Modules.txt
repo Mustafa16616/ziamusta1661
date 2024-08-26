@@ -1,0 +1,60 @@
+------------------------Ansible--------------------
+ansible is used for perfoming tasks in bunch of servers.it is automation tool 
+
+-INSTALL ANSIBLE
+yum -y install ansible-core
+
+-EDIT INVENTORY FILE
+vim /etc/ansible/hosts
+got line 12 and add
+[webservers]
+192.168.100.10
+192.168.100.20
+save and exit
+
+-Verify
+ansible all --list-hosts
+
+
+---------------------ADHOC COMMANDS AND MODULES-------------------
+we use ADHOC command when we want to perfome task only one time or specific occasion
+we can use modules in adhoc command also represented by -m.There are thousands of ansible
+modules and all modules have own usage and purpose,here we will cover some modules for basic understanding.
+
+
+syntax
+ansible (serversgroup) -m(modulename) -a(arguments to modules)
+
+Example
+ we want to add user using adhoc command in all server.
+ansible all -m user -a "name=zia group=root shell=/bin/bash state=present"
+"for adding users or removing users ue will use module (USER)"
+
+-TO LIST ALL ANSIBLE MODULES-------------> ansible-doc -l
+-TO SEE MANUAL OF SPECIFIC MODULE--------> ansible-doc (module name)
+
+-IMPORTANT MODULES TO LEARN
+(COPY,COMMAND,RAW,SHELL,FETCH,GET_URL,LINEINFILE,REPLACE,FILE,USER,GROUP
+.GROUP,YUM,PACKAGE,START,MOUNT,SETUP,SERVICE)
+
+----------------WORKING WITH MODULES---------------
+
+-COPY MODULE(use to copy files from ansible server to worker nodes)
+--------->ansible webservers -m copy -a "src=/root/file1 dest=/root/new"
+--------->ansible webservers -m copy -a "src=/root/file1 dest=/root/new backup=yes"
+
+-COMMAND MODULE(use to run a command on worker nodes BUT only single command )
+---------->ansible webservers -m command -a "ls -al /root/new"
+Command modules also helps when we are not aware which module to use for specif task
+we directly run a command module and command
+
+-RAW MODULE(similar like command module BUT can run multiple commands)
+----------> ansible webservers -m raw -a "uptime;lsblk;"
+
+-FILE MODULE(use to create a files or directories)
+TO CREATE A FILE
+----------->ansible webservers -m file -a "path=/root/file1 state=touch"
+TO CREATE A DIRECTORY
+----------->ansible webservers -m file -a "path=/root/dir1 state=directory"
+
+
