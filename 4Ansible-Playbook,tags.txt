@@ -1,0 +1,56 @@
+-----------------------------ANSIBLE-PLAYBOOK--------------------
+
+We use playbook to perfome a multiple task by running only a single script called ansible playbook
+Ansible playbooks are wriiten in yaml(yml)yet another markup language.
+
+-To create a playbook
+vim devopsplaybook.yml
+
+			
+ start yml script start from 
+			       ---	
+			       - hosts: all
+				 tasks:
+				   - name: addingUser1
+				     user: name=zia state=present
+
+				   - name: addinguser2
+				     user: name=mustafa state=present
+			
+				   - name: installing httpd
+				     yum: name=httpd state=present
+
+				   - name:starting httpd
+				     service: name=httpd state=started
+-save and quit
+
+
+-TO RUN----------->ansible-playbook devopsplaybook.yml
+
+
+--------------------------ANSIBLE-TAGS-------------
+
+we use tags to start a specify command in ansible playbook.yml file
+we can specify which task should execute or which task should not execute
+using ansible tags
+					       
+
+				---
+				- hosts: all
+				 tasks:
+				   - name: creating my first task
+				     user: name=zia state=present
+				     tags: a
+				   - name: addinguser
+				     user: name=mustafa state=present
+				     tags: b
+				   - name: installing httpd
+				     yum: name=httpd state=present
+				     tags: c
+				   - name:starting httpd
+				     service: name=httpd state=started
+				     tags: d
+
+Command
+---------->ansible-playbook --tags a,b ansible.yml  ----to start a specific tags
+---------->ansible-playbook --skip-tags d,a ansible.yml ---to skip specific tags to run
