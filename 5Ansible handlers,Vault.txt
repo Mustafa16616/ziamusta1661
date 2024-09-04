@@ -1,0 +1,44 @@
+---------------------------ANSIBBLE HANDLERS---------------------
+in Ansible handlers two tasks one task is depending on other task.
+like if http is installed then 
+httpd status or service task should be start
+
+---
+- hosts: all
+  tasks:
+    - name: installing httpd
+	yum:
+	name:httpd
+      notify: start httpd
+     handler:
+	- name: start httpd
+	service:
+	name: httpd
+	state: present
+...
+
+
+--------------------------debug module----------------------------
+ansible debug module used to display content or message using ansible built in Command
+---
+- hosts: all
+  tasks:
+    - name:printing
+      	debug:
+	msg: "node name: {{ansible_hostname}}"
+
+
+
+-------------------------ansible vault------------------------
+securing playbooks in ansible via applying password to our ansible playbooks and files
+to prevent theft and unauthorize access and execution,files securing
+
+-ansible-vault create filename
+-cat file
+
+-ansible-vault decrypt file------------(give password of file to see content)
+-ansible-vault encrypt file------------(enrypt by password to protect file)
+
+
+-ansible-vault create ansible playbook.yml
+-ansible-vault encrypt ansible playbook.yml
