@@ -1,0 +1,54 @@
+                        --------Tar-------------------
+
+create a file add multiple file to in to add it to server or send a multiple files in a single form.
+
+
+file.tar=file1+file2+file3+file4
+
+.to create a tar file -----> tar -c
+.to check the list ------->tar -t
+.to display output------> tar -v
+to archieve ----->tar -f
+to extract files----->tar -x
+.preserve the original permission when extracting ----> tar -p
+
+
+
+-------------creation tar file-----------------------------
+
+
+. touch file1 file2 file3
+
+
+. tar -cf files.tar file1 file2 file3
+.to list files in tar file---------> tar -tvf files.tar
+
+to create a tar file to anaother directory-->tar -cvf /root/folder/file.tar file.txt
+
+
+----------------------- to copy dir or folder-------------------
+tar -cf=copyarchieve /root/etc/backup.tar-means we want to
+create tar file here and etc=we want to copy etc directory in tar format
+tar -cf /root/etc backup.tar /etc
+
+
+
+---------------------------------to reduce size via .gz--------------------------------
+
+tar -czf /root/etc/backup.tar.gz /etc
+
+for creating etc backup with gzip
+
+
+--------------------to extract files------------------ 
+tar -xf backup2.tar(if file is only in .tar format)
+
+
+To extract files on different location
+tar -xf file.tar -C /root/extracthere
+
+tar -xzf backup2.tar.gz(if file is in .tar.gz format)
+
+To extract files on different location
+tar -xzf file.tar -C /root/extracthere
+ 

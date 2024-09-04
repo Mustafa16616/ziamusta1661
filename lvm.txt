@@ -1,0 +1,171 @@
+zxzxzxz
+-------------------------(LVM)Logical Volume Manager-------------
+
+lvm is used to manage disk space and creation of partition,allows disks to combine together.
+
+example in windows c drive d drive.
+ 
+multiple disk to combine in 1 disk done through lvm.
+
+---------------------------------Steps of LVM for adding new space------------------
+
+1 add a new harddirve
+-------Attach a hard drive physical if server or from setting in oracle  virtual box(2gb)
+
+
+2 make a partiotion
+
+
+to check disk attached----> lsvlk or fdisk -l
+
+to create a partion ------------>fdisk /dev/sbdfdisl
+
+follow instruction and after linux type make sure to create as a linux lvm not linux simple.
+
+press t to change type,Linux lvm is 8e(hex)
+
+press w to save and create partition.
+
+
+
+ .
+3 create.manage PV Physical volume
+
+create physical volume of partition which is created--->pvdisplay
+---------------> pvcreate /dev/sdb1
+---------------> pvdisplay
+
+
+4 create/manage volume group(VG)
+
+vgcreate (group name) (partition)----------->vgcreate extraSpace /dev/sdb1
+------------> vgdisplay
+
+5 create/manage logical volumn(LV)
+
+if you want to create single lv or two lv,Suppose you have 2 gb sdb1 and want to divide space of 1 gb named data 1
+1 gb space data2.
+
+lvcreate -L size -n nameofvolumn groupname----->lvcreate -L 1000M -n data1 extraspace
+----------------------------------------------->lvcreate -L 1000M -n data2 extraspace
+
+
+
+6 Apply a file system
+
+use mkfs to make file system like xfs or ext4---> mkfs.ext4 /dev/extraspace/Data1(dev is partition,extraspace is VG and Data1 is LV name)
+				             ----> mkfs.ext4 /dev/extra/data2
+
+
+7 set a mount point
+
+	make directories for DATA1 and DATA2--->mkdir /D1,mkdir /D2(/ means this is not simple directory its file system type directory)
+	mount /dev/extraspace/Data1 /root/D1
+	mount /dev/extraspace/Data2 /root/D2
+
+verify---->df -Th
+
+8 to make mount permanant we have to add a entry to fstab
+
+-------->cat /etc/mtab(copy your mounted paths)
+--------vim /etc/fstab
+
+paste it to fstab entry and after ext4 remove till first 0 and before first 0 write (defaults) and save.
+to check mount is good--->mount -av
+
+
+
+
+
+---------------------------------------TO EXTEND EXISITING PARTITION-----------------------------
+
+
+1 create partition similar like above ---------->fdisk /dev/sdb
+
+
+2 create physical volumn(PV)--------------->pvcreate /dev/sdb1
+
+3 now extend it to existing group ------->vgextend groupname partition--->(vgextend cs /dev/sdb1)
+
+4 now extend logical volumn of partition via its group and drive partition name---> lvextend -L +2000M /dev/cs/data1
+	for ext filetype ----> resize2fs /dev/cs/data1
+	for xfs filetype ----> xfs_growfs /dev/cs/data1
+
+
+
+
+--------------------------------------------------------------------------------------------------
+			EXTRA WORK
+
+/swap (files cpu related file in linux)
+/var (log files in linux
+
+shutdown system
+init 0
+
+
+add storage 
+add virtual harddisk
+restart server
+to check hard is added or not---------lsblk
+we have to add it to /dev
+.pvcreate /dev/sdb
+-vgcreate myvg /dev/sdb
+
+if we want full use of harddrive space or customize 
+-lvcreate -n mylv -L +2G myvg          (i have used 2gb)
+
+create file system----->mkfs.xfs /dev/myvg/mylv
+
+mount--->mount /lvm
+
+mkdir /lvm ---------(/means this is not folder its file system)
+fstab ----/dev/myvg/mylvm /lvm xfs defaults 0 0
+
+
+
+
+
+
+
+
+
+lvm extend
+
+lvextend -L +2g /dev/myvg/mylv
+
+lvreduce -L -3G /dev/myvg/mylv--------------reduce lvm size
+
+
+
+extending /var 5 gb
+
+init 0 ---Restart
+
+add storage
+
+lsblk
+
+df -h
+
+we have to give storage to /var.
+
+---pvcreate /dev/sdb
+vgextend cs /dev/sdb     ------vg is cs
+lvextend -l +100%FREE /dev/cs/var -r -----/var is lv and -r is used to resize
+
+
+
+----------------------------------taking snapshoot or backup of lvm------------------------
+
+-lvcreate -L 300M -s -n MYSNAP /dev/basket/TRUCK------------------taking snapshot of vg basket and lv truck
+
+---------------------------now backup data----------------------
+
+-umount /ram---------unmount the lvm where it was mounted in directory
+
+-lvconvert --merge /dev/basket/MYSNAP------------backing up data
+
+-lvconvert -an /dev/basket/TRUCK-----------unattach lv
+-lvconvert -ay /dev/basket/TRUCK-----------attach lv
+-mount /dev/basket/Truck /MOUNTPNT----------mounting point of lvm
