@@ -1,0 +1,33 @@
+	backup command 
+
+cp file /path
+--->cp file1 /home/mustafa/fil2
+
+
+scp command to copy big file
+
+scp file1 192.168.100.16
+
+
+to generterae big files------->seq filesize > filename----> seq 9999 >  datafile
+
+seq 9999999 > filename   (create a large file)
+
+     to copy file to other server
+---> scp datfaile 192.168.100.16:/home
+
+
+
+rsync to fast copy data from 1 server to other for big file transfer we use rsync
+
+rsync bigfile 192.168.100.16:
+
+
+
+------>uname -r which os kernal  is running state  
+------>uname -n name of machine
+------>uname -a all detail of machine
+
+
+---> hostname -I (to check private and public ip)
+---> hostname -l (to check private and public ip and network adapter name)
