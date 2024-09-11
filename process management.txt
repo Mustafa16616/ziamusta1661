@@ -1,0 +1,40 @@
+
+---------------------------Parent---------------------------------
+
+process is a such program which is running on system,every process has a unique id(pid)
+ppid is parent proxwss id
+ 
+when system boot the first process loads or start is systemd an
+old one was init now a days its called systemd process whos id is 1
+systemd is not child all the process we see are derived from systemd so it is Parent and systemd has child
+systemd do not have its parent.
+ 
+Daemon process are those which start on its on when system starts
+till the end or shutdown.they are Ghost process.Daemon never die
+
+zombie process are process which are kill by user but they are still showing up in process list 
+and inactuall they are killed and not using system resources,they are already dead.
+
+
+
+exho $HOSTNAME ---------------------print variable result echo=display,$=variable defination  HOSTNAME=command(command should be capital letters)
+ps -C bash -------------------------print bash id
+ps -C ssh-----------------------to print ssh id
+
+
+pidof sleep---------------------to print process id anaother way sane as above.
+pidof bash---------------------to print process id anaother way sane as above.
+pgrep bash
+
+kill 1508 or kill -9 1589 -------------both are used for killing or terminating process -9 used for force kill
+
+ps -ef -----------------------------to list processes
+
+
+pstree --------------------------to print processes with parent and child.
+pstree -p -s 12323 -------------------tree view of process id
+
+top====================to view which process has greater priority and using most resources of cpu
+(by pressing  r we can change nice value to change priority of process)
+(nice value start from 20 to -20 where 20 means low priority and -20 means top priority)
+
