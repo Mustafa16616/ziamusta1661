@@ -1,0 +1,35 @@
+---------------------------------------------------------------NFS(Network File Sharing)-------------------------------------
+(Server from where directory is shared)
+
+.Download pakage--->yum -y install nfs-utils
+.goto file/etc.exports and edit---> vim /etc/exports
+.enter---->/(shareddir Client machine ip)(permissions)--> /root/shared 192.168.2.210/24(rw,sync,no_root_squash)
+.Save Export File-->exportfs -a  
+.to view saved export ---->exportfs -v
+-RPC SERVICE enable --->exportfs -r
+.allow firewall--->firewall-cmd --permanent --add-port=111/tcp
+------->firewall-cmd --permanent --add-port=111/udp
+------->firewall-cmd --permanent --add-port=2049/tcp
+------->firewall-cmd --permanent --add-port=2049/udp
+------->firewall-cmd --permanent --add-service=rpc-bind
+------->firewall-cmd --permanent --add-service=mountd
+------->firewall-cmd --reload
+
+.start nfs server--->systemctl start nfs-utils --->systemctl enable nfs-utils
+.CHeck path is shared ---->showmount -e 192.168.2.10
+
+(Client side where directory is accessed)
+
+.download nfs
+.allow same firewall permissions
+.create directory which should be sync with server's shared directory
+---------->mkdir nfs
+.mount server ip :server shared dir path client dir path--->mount 192.168.2.10:/root/shared /root/nfs
+
+.To automatically mount NFS shares at boot, add an entry to /etc/fstab on the client:
+----><nfs_server_ip>:/shared_directory /client directory nfs defaults 0 0
+---->192.168.2.10:/root/shared /root/nfs nfs defaults 0 0
+
+.save fstab---> mount -a
+
+ 
