@@ -1,5 +1,5 @@
 
----------------------------Parent---------------------------------
+---------------------------Parent-------------------------------
 
 process is a such program which is running on system,every process has a unique id(pid)
 ppid is parent proxwss id
