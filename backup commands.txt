@@ -1,4 +1,4 @@
-	backup command 
+	Backup command 
 
 cp file /path
 --->cp file1 /home/mustafa/fil2
