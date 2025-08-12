@@ -1,5 +1,5 @@
 zxzxzxz
--------------------------(LVM)Logical Volume Manager-------------
+-------------------------(LVm)Logical Volume Manager-------------
 
 lvm is used to manage disk space and creation of partition,allows disks to combine together.
 
