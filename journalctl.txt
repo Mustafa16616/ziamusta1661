@@ -1,4 +1,4 @@
-------------------------------------JOURNALCTL------------------
+------------------------------------JOURNALCTL log view------------------
 Its a daemon which handle all the messages produced by kernel services initrd(initial ram,disk)
 also used to access and manipulate the data with in journal
 
