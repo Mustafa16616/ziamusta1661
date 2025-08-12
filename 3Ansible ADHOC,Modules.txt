@@ -1,5 +1,5 @@
 ------------------------Ansible--------------------
-ansible is used for perfoming tasks in bunch of servers.it is automation tool 
+ansible is used for perfomming tasks in bunch of servers.it is automation tool 
 
 -INSTALL ANSIBLE
 yum -y install ansible-core
