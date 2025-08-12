@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IT Professional Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #0d1b2a;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        header p {
+            margin: 0.5rem 0 0;
+            font-size: 1.2rem;
+            color: #cce3de;
+        }
+        section {
+            max-width: 900px;
+            margin: auto;
+            padding: 2rem 1rem;
+        }
+        h2 {
+            color: #1b263b;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+        .services, .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #0d1b2a;
+            color: white;
+            margin-top: 2rem;
+        }
+        a {
+            color: #0077b6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>John Doe</h1>
+        <p>IT Professional | Developer | Tech Enthusiast</p>
+    </header>
+
+    <section>
+        <h2>About Me</h2>
+        <p>I am a dedicated IT professional with expertise in software development, networking, and cybersecurity. I’m passionate about solving complex problems and building efficient, secure systems.</p>
+    </section>
+
+    <section>
+        <h2>Services</h2>
+        <div class="services">
+            <div class="card">
+                <h3>Software Development</h3>
+                <p>Custom applications tailored to business needs using modern programming languages.</p>
+            </div>
+            <div class="card">
+                <h3>Network Solutions</h3>
+                <p>Design, implementation, and maintenance of secure network infrastructures.</p>
+            </div>
+            <div class="card">
+                <h3>Cybersecurity</h3>
+                <p>Threat analysis, penetration testing, and system hardening to protect data.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Projects</h2>
+        <div class="projects">
+            <div class="card">
+                <h3>Inventory Management System</h3>
+                <p>A cloud-based system for tracking inventory in real-time.</p>
+                <a href="#">View Project</a>
+            </div>
+            <div class="card">
+                <h3>Secure VPN Setup</h3>
+                <p>Configured and deployed a company-wide secure VPN network.</p>
+                <a href="#">View Project</a>
+            </div>
+            <div class="card">
+                <h3>Website Redesign</h3>
+                <p>Modernized a client’s e-commerce platform for better UX and SEO.</p>
+                <a href="#">View Project</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:john.doe@example.com">john.doe@example.com</a></p>
+        <p>LinkedIn: <a href="#">linkedin.com/in/johndoe</a></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 John Doe | All Rights Reserved</p>
+    </footer>
+</body>
+</html>
